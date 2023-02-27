@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Humidity;
+use App\Models\Temperature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::post("/send", function (Request $request) {
+    Temperature::create([
+        "nilai" => $request->temperature
+    ]);
+    Humidity::create([
+        "nilai" => $request->humidity
+    ]);
+
+    return true;
 });

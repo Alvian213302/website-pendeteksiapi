@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\uiController@index');
-Route::get('/location', 'App\Http\Controllers\uiController@location');
-Route::get('/user', 'App\Http\Controllers\uiController@user');
-Route::get('/about', 'App\Http\Controllers\uiController@about');
+Route::middleware(['auth'])->group(function () {
+  Route::get('/', 'App\Http\Controllers\uiController@index');
+  Route::get('/location', 'App\Http\Controllers\uiController@location');
+  Route::get('/user', 'App\Http\Controllers\uiController@user');
+  Route::get('/about', 'App\Http\Controllers\uiController@about');
+
+  Route::get("/logout", "App\Http\Controllers\uiController@logout");
+});
+
+Route::get("/login", "App\Http\Controllers\uiController@login")->name("login")->middleware("guest");
+Route::post("/login", "App\Http\Controllers\uiController@loginAuth");
