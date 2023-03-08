@@ -60,6 +60,30 @@ class uiController extends Controller
         return redirect("/login");
     }
 
+    public function updateChart()
+    {
+        $temperature = Temperature::orderBy('id', 'desc')->get()->take(10);
+        $humidity = Humidity::orderBy('id', 'desc')->get()->take(10);
+
+        $time = [];
+        $dtTemp = [];
+        foreach ($temperature as $data) {
+            $time[] = $data->time;
+            $dtTemp[] = $data->nilai;
+        }
+
+        $dtHum = [];
+        foreach ($humidity as $data) {
+            $dtHum[] = $data->nilai;
+        }
+
+        return response()->json([
+            'time' => $time,
+            'temperature' => $dtTemp,
+            'humidity' => $dtHum
+        ]);
+    }
+
     public function updateStatus()
     {
         $data = Temperature::latest()->first();

@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get("/logout", "App\Http\Controllers\uiController@logout");
 
+  Route::get("update-chart", "App\Http\Controllers\uiController@updateChart")->name("update-chart");
   Route::get("update-status", "App\Http\Controllers\uiController@updateStatus")->name("update-status");
 });
 

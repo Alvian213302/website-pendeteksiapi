@@ -81,7 +81,6 @@
   new Chartist.Line(
     "#ct-visits",
     {
-      // labels from $temperature->created_at
       labels: [
         @foreach ($temperature as $item)
           "{{ $item->time }}",
@@ -130,8 +129,22 @@
     });
   }
 
+  function updateChart() {
+    $.ajax({
+      url: "{{ route('update-chart') }}",
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        chart[0].update({
+          labels: data.time,
+          series: [data.temperature, data.humidity],
+        });
+      },
+    });
+  }
 
   setInterval(updateStatus, 30000);
+  setInterval(updateChart, 30000);
 
 
 </script>
