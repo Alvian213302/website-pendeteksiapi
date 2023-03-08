@@ -29,7 +29,7 @@
       <div class="white-box analytics-info">
         <h3 class="box-title">Status</h3>
         <div class="status">
-        <h3 class="counter text-purple">@isset($temperature[0]) @if($temperature[0]->nilai > 40) Kebakaran @else Aman @endif @else - @endisset</h3>
+        <h3 class="counter text-purple" id="status">@isset($temperature[0]) @if($temperature[0]->nilai > 40) Kebakaran @else Aman @endif @else - @endisset</h3>
         </div>
       </div>
     </div>
@@ -71,7 +71,6 @@
       </div>
     </div>
   </div>
-
 
 </div>
 @endsection
@@ -118,6 +117,23 @@
   );
 
   var chart = [chart];
+
+
+  function updateStatus() {
+    $.ajax({
+      url: "{{ route('update-status') }}",
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        $("#status").html(data.status);
+      },
+    });
+  }
+
+
+  setInterval(updateStatus, 30000);
+
+
 </script>
 
 @endsection

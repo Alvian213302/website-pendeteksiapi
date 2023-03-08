@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/about', 'App\Http\Controllers\uiController@about');
 
   Route::get("/logout", "App\Http\Controllers\uiController@logout");
+
+  Route::get("update-status", "App\Http\Controllers\uiController@updateStatus")->name("update-status");
 });
 
 Route::get("/login", "App\Http\Controllers\uiController@login")->name("login")->middleware("guest");

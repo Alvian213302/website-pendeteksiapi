@@ -59,4 +59,14 @@ class uiController extends Controller
         auth()->logout();
         return redirect("/login");
     }
+
+    public function updateStatus()
+    {
+        $data = Temperature::latest()->first();
+        $status = $data->nilai < 40 ? "Aman" : "Kebakaran";
+
+        return response()->json([
+            'status' => $status
+        ]);
+    }
 }
