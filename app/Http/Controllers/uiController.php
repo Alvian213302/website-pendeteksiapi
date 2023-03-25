@@ -93,4 +93,14 @@ class uiController extends Controller
             'status' => $status
         ]);
     }
+
+    public function updateSuhu()
+    {
+        $data = Temperature::latest()->first();
+        $suhu = $data->nilai;
+
+        return response()->json([
+            'suhu' => $suhu
+        ]);
+    }
 }

@@ -37,7 +37,7 @@
       <div class="white-box analytics-info">
         <h3 class="box-title">Suhu Ruangan</h3>
         <div class="nilai">
-          <h3 class="counter text-purple">@isset($temperature[0]) {{ $temperature[0]->nilai }} @else - @endisset °C</h3>
+          <h3 class="counter text-purple" id="suhu">@isset($temperature[0]) {{ $temperature[0]->nilai }} @else - @endisset °C</h3>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@
 @section("script")
 
 <script>
-  new Chartist.Line(
+  let chartLine = new Chartist.Line(
     "#ct-visits",
     {
       labels: [
@@ -115,7 +115,7 @@
     }
   );
 
-  var chart = [chart];
+  var chart = [chartLine];
 
 
   function updateStatus() {
@@ -143,10 +143,21 @@
     });
   }
 
-  setInterval(updateStatus, 30000);
-  setInterval(updateChart, 30000);
+  // update suhu
+  function updateSuhu() {
+    $.ajax({
+      url: "{{ route('update-suhu') }}",
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        $("#suhu").html(data.suhu);
+      },
+    });
+  }
 
-
+  setInterval(updateStatus, 3000);
+  setInterval(updateChart, 3000);
+  setInterval(updateSuhu, 3000);
 </script>
 
 @endsection

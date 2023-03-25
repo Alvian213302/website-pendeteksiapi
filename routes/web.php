@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get("update-chart", "App\Http\Controllers\uiController@updateChart")->name("update-chart");
   Route::get("update-status", "App\Http\Controllers\uiController@updateStatus")->name("update-status");
+  Route::get("update-suhu", "App\Http\Controllers\uiController@updateSuhu")->name("update-suhu");
 });
 
 Route::get("/login", "App\Http\Controllers\uiController@login")->name("login")->middleware("guest");
