@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Humidity;
 use App\Models\Temperature;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -24,7 +25,33 @@ class uiController extends Controller
     }
     public function user()
     {
-        return view('user');
+        $users = User::where("username", "!=", "admin")->get();
+        return view('user', compact('users'));
+    }
+    public function userCreate(Request $request)
+    {
+        User::create([
+            "name" => $request->name,
+            "username" => $request->username,
+            "email" => $request->email,
+            "password" => bcrypt($request->password),
+        ]);
+        return redirect()->back()->with('pesan', 'Data berhasil ditambahkan');
+    }
+    public function userUpdate(User $user, Request $request)
+    {
+        $user->update([
+            "name" => $request->name,
+            "username" => $request->username,
+            "email" => $request->email,
+        ]);
+
+        return redirect()->back()->with('pesan', 'Data berhasil diubah');
+    }
+    public function userDelete(User $user)
+    {
+        $user->delete();
+        return redirect()->back()->with('pesan', 'Data berhasil dihapus');
     }
     public function about()
     {

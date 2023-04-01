@@ -159,6 +159,7 @@
                   <span class="hide-menu">Location</span>
                 </a>
               </li>
+              @if(Auth::user()->username == 'admin')
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -169,6 +170,7 @@
                   <span class="hide-menu">Account</span>
                 </a>
               </li>
+              @endif
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -177,6 +179,16 @@
                 >
                   <i class="fa fa-info-circle" aria-hidden="true"></i>
                   <span class="hide-menu">About</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="/logout"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-power-off" aria-hidden="true"></i>
+                  <span class="hide-menu">Logout</span>
                 </a>
               </li>
             </ul>

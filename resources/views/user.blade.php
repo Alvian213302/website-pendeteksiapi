@@ -1,153 +1,208 @@
 @extends('master')
 @section('content')
 
-<!-- Container fluid  -->
-        <!-- ============================================================== -->
-        <div class="container-fluid">
-          <!-- ============================================================== -->
-          <!-- Start Page Content -->
-          <!-- ============================================================== -->
-          <!-- Row -->
-          <div class="row">
-            <!-- Column -->
-            <div class="col-lg-4 col-xlg-3 col-md-12">
-              <div class="white-box">
-                <div class="user-bg">
-                  <img
-                    width="100%"
-                    alt="user"
-                    src="plugins/images/large/img1.jpg"
-                  />
-                  <div class="overlay-box">
-                    <div class="user-content">
-                      <a href="javascript:void(0)"
-                        ><img
-                          src="plugins/images/users/genu.jpg"
-                          class="thumb-lg img-circle"
-                          alt="img"
-                      /></a>
-                      <h4 class="text-white mt-2">User Name</h4>
-                      <h5 class="text-white mt-2">info@myadmin.com</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="user-btm-box mt-5 d-md-flex">
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>258</h1>
-                  </div>
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>125</h1>
-                  </div>
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>556</h1>
-                  </div>
-                </div>
-              </div>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Column -->
+    <div class="col-lg-12 col-xlg-12 col-md-12">
+      <div class="white-box">
+        <div class="user-bg">
+          <img
+            width="100%"
+            alt="user"
+            src="plugins/images/large/img1.jpg"
+          />
+          <div class="overlay-box">
+            <div class="user-content">
+              <a href="javascript:void(0)"
+                ><img
+                  src="plugins/images/users/genu.jpg"
+                  class="thumb-lg img-circle"
+                  alt="img"
+              /></a>
+              <h4 class="text-white mt-2">{{ Auth::user()->username }}</h4>
+              <h5 class="text-white mt-2">{{ Auth::user()->email }}</h5>
             </div>
-            <!-- Column -->
-            <!-- Column -->
-            <div class="col-lg-8 col-xlg-9 col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <form class="form-horizontal form-material">
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Full Name</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="text"
-                          placeholder="Johnathan Doe"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label for="example-email" class="col-md-12 p-0"
-                        >Email</label
-                      >
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="email"
-                          placeholder="johnathan@admin.com"
-                          class="form-control p-0 border-0"
-                          name="example-email"
-                          id="example-email"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Password</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="password"
-                          value="password"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Phone No</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="text"
-                          placeholder="123 456 7890"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Message</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <textarea
-                          rows="5"
-                          class="form-control p-0 border-0"
-                        ></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-sm-12">Select Country</label>
-
-                      <div class="col-sm-12 border-bottom">
-                        <select
-                          class="
-                            form-select
-                            shadow-none
-                            p-0
-                            border-0
-                            form-control-line
-                          "
-                        >
-                          <option>London</option>
-                          <option>India</option>
-                          <option>Usa</option>
-                          <option>Canada</option>
-                          <option>Thailand</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <div class="col-sm-12">
-                        <button class="btn btn-success">Update Profile</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- Column -->
           </div>
-          <!-- Row -->
-          <!-- ============================================================== -->
-          <!-- End PAge Content -->
-          <!-- ============================================================== -->
-          <!-- ============================================================== -->
-          <!-- Right sidebar -->
-          <!-- ============================================================== -->
-          <!-- .right-sidebar -->
-          <!-- ============================================================== -->
-          <!-- End Right sidebar -->
-          <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+      </div>
+    </div>
+    <!-- Column -->
 
+    <!-- Column -->
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4>Tambah user</h4>
+          <form action="/user/create" method="post">
+            @csrf
+            <div class="form-group">
+              <label for="name">Nama</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                required
+                placeholder="name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                required
+                placeholder="username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                required
+                placeholder="email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                required
+                placeholder="password"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Tambah</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Column -->
+
+    <!-- Column -->
+    <div class="col-lg-12 col-xlg-12 col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($users as $user)
+                <tr>
+                  <form action="/user/update/{{ $users[0]->id }}" method="POST">
+                    @csrf
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        required
+                        placeholder="name"
+                        value="{{ $user->name }}"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="username"
+                        required
+                        placeholder="username"
+                        value="{{ $user->username }}"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="email"
+                        required
+                        placeholder="email"
+                        value="{{ $user->email }}"
+                      />
+                    </td>
+                    <td>
+                      <button class="btn btn-success btn-simpan" type="submit">Simpan</button>
+                      <button type="button" class="btn btn-danger btn-delete" data-id="{{ $user->id }}">Hapus</button>
+                    </td>
+                  </form>
+                  </tr>
+                  @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Column -->
+  </div>
+</div>
+
+
+@endsection
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  $(document).ready(function () {
+    $(".btn-simpan").click(function (e) {
+      e.preventDefault();
+      var form = $(this).parents("form");
+      Swal.fire({
+        title: "Apakah anda yakin?",
+        text: "Data akan disimpan",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, simpan!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log(result);
+          form.submit();
+        }
+      });
+    });
+
+    // btn delete on click
+    $(".btn-delete").click(function (e) {
+      e.preventDefault();
+      var id = $(this).data("id");
+      Swal.fire({
+        title: "Apakah anda yakin?",
+        text: "Data akan dihapus",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, hapus!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = "/user/delete/" + id;
+        }
+      });
+    });
+
+  });
+</script>
+
+@if(session('pesan'))
+<script>
+  Swal.fire({
+    icon: "success",
+    title: "Berhasil",
+    text: "{{ session('pesan') }}",
+  });
+</script>
+@endif
 @endsection
