@@ -6,6 +6,7 @@ use App\Models\Humidity;
 use App\Models\Temperature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class uiController extends Controller
 {

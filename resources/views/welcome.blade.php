@@ -150,7 +150,7 @@
       type: "GET",
       dataType: "json",
       success: function (data) {
-        $("#suhu").html(data.suhu);
+        $("#suhu").html(data.suhu + " °C");
       },
     });
   }

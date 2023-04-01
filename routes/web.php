@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get("/login", "App\Http\Controllers\uiController@login")->name("login")->middleware("guest");
 Route::post("/login", "App\Http\Controllers\uiController@loginAuth");
+
+// Send mail
+Route::get('/kirim', function () {
+});
