@@ -94,6 +94,7 @@
                   <th>Nama</th>
                   <th>Username</th>
                   <th>Email</th>
+                  <th>Password</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -133,6 +134,13 @@
                       />
                     </td>
                     <td>
+                      <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        placeholder="password"
+                      />
+                    <td>
                       <button class="btn btn-success btn-simpan" type="submit">Simpan</button>
                       <button type="button" class="btn btn-danger btn-delete" data-id="{{ $user->id }}">Hapus</button>
                     </td>
@@ -155,25 +163,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   $(document).ready(function () {
-    $(".btn-simpan").click(function (e) {
-      e.preventDefault();
-      var form = $(this).parents("form");
-      Swal.fire({
-        title: "Apakah anda yakin?",
-        text: "Data akan disimpan",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Ya, simpan!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          console.log(result);
-          form.submit();
-        }
-      });
-    });
-
     // btn delete on click
     $(".btn-delete").click(function (e) {
       e.preventDefault();

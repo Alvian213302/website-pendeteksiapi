@@ -44,6 +44,7 @@ class uiController extends Controller
             "name" => $request->name,
             "username" => $request->username,
             "email" => $request->email,
+            "password" => $request->password ? bcrypt($request->password) : $user->password,
         ]);
 
         return redirect()->back()->with('pesan', 'Data berhasil diubah');
